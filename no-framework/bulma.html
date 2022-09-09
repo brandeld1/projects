@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulma Webpage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .progress-bar-top-menu{
+            margin-top:25px;
+            width:50%;
+            height:auto;
+            margin:auto;
+        }
+
+        #no-hover:hover{
+            background-color:hsla(171, 100%, 41%, 0.712);
+        }
+
+        #to-do-delete{
+            float:right;
+        }
+        
+        .main-content{
+            margin-top:50px;
+        }
+
+        #no-border-button{
+            padding-bottom:4px;
+            border:none;
+            background:none;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav id="my-navbar" class="navbar is-light">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io/">
+                <img src="bulma-logo.png" alt="logo" width="112" height="28">
+            </a>
+            <a class="navbar-burger" data-target="menu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu" id="menu">
+            <a class="navbar-item" href="https://bulma.io/">
+                Home
+            </a>
+
+            <a class="navbar-item" href="https://bulma.io/documentation/">
+                Docs
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                More
+                </a>
+        
+                <div class="navbar-dropdown">
+                <a class="navbar-item" href="https://bulma.io/documentation/overview/">
+                    Overview
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+                    Modifiers
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/columns/">
+                    Columns
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="https://bulma.io/documentation/elements/">
+                    Elements
+                </a>
+                </div>
+            </div>
+
+            <progress class="progress-bar-top-menu progress is-small is-primary" max="100">15%</progress>
+
+            <div class="navbar-end">
+            <a class="navbar-item" href="https://www.google.com/">
+                <img src="Google-logo.png" alt="logo">
+            </a>
+
+            <a class="navbar-item navbar is-primary" id="no-hover" href="https://github.com/jgthms/bulma/releases/download/0.9.4/bulma-0.9.4.zip">
+                Download
+            </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content columns is-centered">
+        <div class="column is-half">
+            <div id="my-card" class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Example of what I learned in Bulma
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        I learned to make this card, I also added a progress bar at the top 
+                        of the page because I like the way it looks even though it has no purpose
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a class="card-footer-item" href="#">Delete</a>
+                    <button id="no-border-button"class="js-modal-trigger button card-footer-item" data-target="modal-js-example">
+                        Open JS example modal
+                      </button>
+                </footer>
+            </div>
+        </div>
+        
+
+
+        <div class="column is-one-quarter">
+            <nav id="my-to-do"class="panel container content">
+                <p class="panel-heading">
+                    To-Do
+                    <button id="to-do-delete" class="delete is-small"></button>
+                </p>
+
+                <div class="panel-block">
+                    <input class="input" type="text" placeholder="Add activity">
+                </div>
+                <div class="tabs">
+                    <a class="is-active">Monday</a>
+                    <a>Tuesday</a>
+                    <a>Wednesday</a>
+                    <a>Thursday</a>
+                    <a>Friday</a>
+                </div>
+
+                <div>
+                    <label class="checkbox panel-block">
+                        <input type="checkbox">
+                            <p>Learn HTML</p>
+                    </label>
+
+                    <label class="checkbox panel-block">
+                        <input type="checkbox">
+                            <p>Learn CSS</p>
+                    </label>
+                    
+                    <label class="checkbox panel-block">
+                        <input type="checkbox">
+                            <p>Learn Bulma</p>
+                    </label>
+                    
+                    <label class="checkbox panel-block">
+                        <input type="checkbox">
+                            <p>Fail</p>
+                    </label>
+
+                    <label class="checkbox panel-block">
+                        <input type="checkbox">
+                            <p>Give up</p>
+                    </label>
+                </div>
+            </nav>
+        </div> 
+    </div>
+
+    <div id="my-tiles" class="tile is-ancestor">
+        <div class="tile is-4 is-vertical is-parent">
+          <div class="tile is-child box">
+            <p class="title">One</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+          </div>
+          <div class="tile is-child box">
+            <p class="title">Two</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child box">
+            <p class="title">Three</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio felis ut quam.</p>
+            <p>Suspendisse varius ligula in molestie lacinia. Maecenas varius eget ligula a sagittis. Pellentesque interdum, nisl nec interdum maximus, augue diam porttitor lorem, et sollicitudin felis neque sit amet erat. Maecenas imperdiet felis nisi, fringilla luctus felis hendrerit sit amet. Aenean vitae gravida diam, finibus dignissim turpis. Sed eget varius ligula, at volutpat tortor.</p>
+            <p>Integer sollicitudin, tortor a mattis commodo, velit urna rhoncus erat, vitae congue lectus dolor consequat libero. Donec leo ligula, maximus et pellentesque sed, gravida a metus. Cras ullamcorper a nunc ac porta. Aliquam ut aliquet lacus, quis faucibus libero. Quisque non semper leo.</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="#my-to-do">To-do</a></li>
+            <li><a href="#my-card">Card</a></li>
+            <li><a href="#my-tiles">Tiles</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+        </ul>
+      </nav>
+
+    <footer class="footer" background-color="is-light">
+        <div class="has-text-centered">
+          <p>
+            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          </p>
+        </div>
+      </footer>
+      
+
+
+      <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+          <div class="box">
+            <p>The breadcrumb at the bottom of the page has bookmarks that are functional</p>
+            <!-- Your content -->
+          </div>
+        </div>
+      
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+</body>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) { // Escape key
+      closeAllModals();
+    }
+  });
+});
+</script>
+</html>
