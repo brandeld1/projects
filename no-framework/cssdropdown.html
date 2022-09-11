@@ -9,6 +9,7 @@
         html body{
             margin: 0;
             padding: 0;
+            background-color: rgb(204, 253, 204);
         }
         ul {
             list-style-type: none;
@@ -38,13 +39,7 @@
             color: black;
             text-align: left;
             margin:0;
-            
             text-decoration: none;
-        }
-
-
-        li.dropdown {
-            display: inline-block;
         }
 
         li a:hover, .dropdown:hover .dropbtn {
@@ -65,7 +60,8 @@
             color: blueviolet;            
             text-decoration: none;
             display: block;
-            text-align: center;
+            text-align: left;
+            padding-left:7px;
             padding-top:7px;
             padding-bottom:7px;
         }
@@ -80,15 +76,66 @@
             display: block;
         }
 
+
+        .instruction {
+            max-width:1250px;
+            height:125px;
+            background-color:white;
+            margin-top:30px;
+            margin-left:auto;
+            margin-right:auto;
+            overflow:hidden;
+        }
+
+        .instruction_color {
+            width:10px;
+            height:125px;
+            background-color:green;
+            float:left;
+        }
+
+        .instruction_color2 {
+            width:10px;
+            height:125px;
+            background-color:yellow;
+            float:left;
+        }
+
+        .instruction_text {
+            padding-left:50px;
+            font-family:sans-serif;
+            font-size:large;
+        }
+
     </style>
 </head>
 <body>
     <ul>
-        <li><a class="dropbtn" href="#"><strong>File</strong></a></li>
+        <li class="dropdown">
+            <a class="dropbtn" href="#"><strong>File</strong></a>
+            <div class="dropdown-content">
+                <a href="#">New</a>
+                <a href="#">Open</a>
+                <a href="#">Save</a>
+                <a href="#">Print</a>
+                <a href="#">Close</a>
+              </div>
+            </li>
 
 
-        <li><a class = "dropbtn" href="#">Edit</a></li>
-
+        <li class="dropdown">
+            <a class = "dropbtn" href="#">Edit</a>
+            <div class="dropdown-content">
+                <a href="#">Undo</a>
+                <a href="#">Redo</a>
+                <a href="#">Cut</a>
+                <a href="#">Copy</a>
+                <a href="#">Paste</a>
+                <a href="#">Delete</a>
+                <a href="#">Select all</a>
+              </div>
+            </li>
+            
 
         <li class="dropdown">
             <a href="#" class="dropbtn"><strong>View</strong></a>
@@ -104,6 +151,20 @@
             </div>
           </li>
     </ul>
+
+    <div class="instruction">
+        <div class="instruction_color" background-color="green"></div>
+        <p class="instruction_text"><strong>Instructions</strong><br><br>
+        Recreate this page using <strong><i>only CSS</i></strong>. Do yourself a favor and 1) Do not view the source. 
+        Figure it out yourself. 2) Do not search for the solution. Learn CSS until you know enough to do this.</p>
+    </div>
+
+    <div class="instruction">
+        <div class="instruction_color2" background-color="green"></div>
+        <p class="instruction_text"><strong>Extra Credit</strong><br><br>
+            Notice how the Edit menu (besides for not being bold) reacts to clicks. 
+            If you click the edit menu, it remains open until you click somewhere else. (This you might need to search for)</p>
+    </div>
     
 </body>
 </html>
