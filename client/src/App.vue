@@ -1,20 +1,19 @@
 <script setup lang="ts">
-  import { RouterLink, RouterView } from 'vue-router'
-  import NavBar from './components/NavBar.vue'
-  import HelloWorld from './components/RecentWorkouts.vue'
+    import { RouterView } from 'vue-router'
+    import NavVue from './components/NavBar.vue';
+    import Home from './components/Home.vue'
+
+    
 </script>
 
 <template>
-  
+    
   <header>
-    <NavBar />
+    <NavVue />
   </header>
 
   <div class="container">
     <RouterView />
-  </div>
-  <div>
-    <HelloWorld />
   </div>
 
 </template>
