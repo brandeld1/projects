@@ -1,13 +1,16 @@
+import type { StringifyOptions } from "querystring";
 import { reactive } from "vue";
 
 const session = reactive( {
-    user: null as User | null,
+    users: [] as User[] | any,
+    user:  null as User | any,
 });
 
-export function login(firstName: string, lastName: string) {
+export function login(firstName: string, lastName: string, friends: string[]) {
     session.user = {
         firstName,
         lastName,
+        friends,
     };
 }
 
@@ -16,8 +19,10 @@ export function logout() {
 }
 
 export class User {
-    public firstName?: string;
-    public lastName?: string;
+    firstName?: string;
+    lastName?: string;
+    friends?: string[];
+    
 }
 
 export default session;

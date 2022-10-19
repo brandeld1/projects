@@ -46,9 +46,9 @@
                 <router-link class="navbar-item" to="/history">
                   History
                 </router-link>
-                <a class="navbar-item">
+                <router-link class="navbar-item" to="/admin">
                   Admin
-                </a>
+                </router-link>
               </div>
             </div>
           </div>

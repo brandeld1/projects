@@ -2,16 +2,19 @@
 
     import workoutSession from '../stores/workouts'
 
+    import session from '../stores/session'
+
 </script>
 
 <template>
-     <label class="panel-block" v-for="item in workoutSession.completedWorkouts">
-        Name: {{ item.name }},
-        Reps: {{ item.reps }},
-        Sets: {{ item.sets }},
-        Time: {{ item.time }}
+    <div v-for="item in workoutSession.completedWorkouts">
+     <label class="panel-block" v-if="item.owningUser.firstName==session.user.firstName">
+        <div v-if="item.owningUser.firstName==session.user.firstName">Name: {{ item.name }},</div>
+        <div v-if="item.owningUser.firstName==session.user.firstName">Reps: {{ item.reps }},</div>
+        <div v-if="item.owningUser.firstName==session.user.firstName">Sets: {{ item.sets }},</div>
+        <div v-if="item.owningUser.firstName==session.user.firstName">Time: {{ item.time }}</div>
     </label>
-
+</div>
 </template>
 
     

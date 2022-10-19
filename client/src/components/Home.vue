@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
     import workoutSession from '../stores/workouts'
+    import session from '../stores/session'
 
     function addToCompletedWorkouts() {
       while(workoutSession.workouts.length!=0){
@@ -21,12 +22,12 @@
                   Check completed workouts
                 </p>
 
-                <div>
-                  <label class=" checkbox panel-block" v-for="item in workoutSession.workouts">
-                      <input type="checkbox">
-                          Name: {{ item.name }},
-                          Reps: {{ item.reps }},
-                          Sets: {{ item.sets }}
+                <div v-for="item in workoutSession.workouts">
+                  <label class=" checkbox panel-block" v-if="item.owningUser.firstName==session.user.firstName">
+                      <input v-if="item.owningUser.firstName==session.user.firstName" type="checkbox">
+                          <div v-if="item.owningUser.firstName==session.user.firstName">Name: {{ item.name }},</div>
+                          <div v-if="item.owningUser.firstName==session.user.firstName">Reps: {{ item.reps }},</div>
+                          <div v-if="item.owningUser.firstName==session.user.firstName">Sets: {{ item.sets }}</div>
                     </label>
                   </div>
   </div> 
