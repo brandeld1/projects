@@ -2,11 +2,13 @@
 import workoutSession from '../stores/workouts';
 import session, { login, logout } from '../stores/session';
 
+    var newFirstName: any;
+    var newLastName: any;
 
-    function checkName(newFirstName:string, newLastName:string){
+    function checkName(newFirstName2:string, newLastName2:string){
         for(let x=0;x<session.users.length;x++){
-            if(session.users[x].firstName == newFirstName && session.users[x].lastName == newLastName){
-                login(newFirstName,newLastName, session.users[x].friends);
+            if(session.users[x].firstName == newFirstName2 && session.users[x].lastName == newLastName2){
+                login(newFirstName2,newLastName2, session.users[x].friends);
             }
         }
     }

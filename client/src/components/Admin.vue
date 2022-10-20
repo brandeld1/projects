@@ -7,11 +7,11 @@ import session from '../stores/session'
   var newLastName: any;
   var newFriends: any;
 
-  function addToUsers(newFirstName: string, newLastName: string, newFriends: string) {
-    const friendsArr = newFriends.split(" ");
+  function addToUsers(newFirstName2: string, newLastName2: string, newFriends2: string) {
+    const friendsArr = newFriends2.split(" ");
     const user= {
-        firstName: newFirstName,
-        lastName: newLastName,
+        firstName: newFirstName2,
+        lastName: newLastName2,
         friends: friendsArr,
     }
     session.users.push(user);

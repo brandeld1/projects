@@ -10,13 +10,13 @@ import session, {} from '../stores/session'
     var newSets: any;
 
 
-  function addToWorkouts(newName: any, newReps: any, newSets: any) {
+  function addToWorkouts(newName2: any, newReps2: any, newSets2: any) {
     var date= new Date();
     const workout= {
         owningUser: session.user,
-        name: newName,
-        reps: newReps,
-        sets: newSets,
+        name: newName2,
+        reps: newReps2,
+        sets: newSets2,
         time: '',
     }
     workoutSession.workouts.push(workout);
