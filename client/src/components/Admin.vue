@@ -3,9 +3,11 @@
 import { reactive } from 'vue';
 
 import session from '../stores/session'
+  var newFirstName: any;
+  var newLastName: any;
+  var newFriends: any;
 
-
-  function addToUsers(newFirstName: any, newLastName: any, newFriends: any) {
+  function addToUsers(newFirstName: string, newLastName: string, newFriends: string) {
     const friendsArr = newFriends.split(" ");
     const user= {
         firstName: newFirstName,

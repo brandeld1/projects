@@ -24,5 +24,4 @@ export class User {
     friends?: string[];
     
 }
-
 export default session;

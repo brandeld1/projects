@@ -7,6 +7,7 @@ const workoutSession = reactive( {
     completedWorkouts: [] as Workout[] | any,
     friendsWorkouts: [] as String[] | any,
     tempWorkouts: [] as Workout[] | any,
+    tempVars: null as tempVars | any,
 });
 
 export class Workout {
@@ -14,6 +15,12 @@ export class Workout {
     name?: string;
     reps?: number;
     sets?: number;
+}
+
+export class tempVars {
+    newName?: string;
+    newReps?: number;
+    newSets?: number;
 }
 
 export default workoutSession;
