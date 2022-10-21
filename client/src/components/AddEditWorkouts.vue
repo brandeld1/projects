@@ -5,9 +5,9 @@ import { onBeforeMount, reactive } from 'vue';
 import workoutSession from '../stores/workouts'
 import session, {} from '../stores/session'
 
-    var newName: any;
-    var newReps: any;
-    var newSets: any;
+    var newName: string;
+    var newReps: number;
+    var newSets: number;
 
 
   function addToWorkouts(newName2: any, newReps2: any, newSets2: any) {

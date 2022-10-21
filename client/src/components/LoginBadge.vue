@@ -2,8 +2,8 @@
 import workoutSession from '../stores/workouts';
 import session, { login, logout } from '../stores/session';
 
-    var newFirstName: any;
-    var newLastName: any;
+    var newFirstName: string;
+    var newLastName: string;
 
     function checkName(newFirstName2:string, newLastName2:string){
         for(let x=0;x<session.users.length;x++){
