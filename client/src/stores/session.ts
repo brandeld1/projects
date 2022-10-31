@@ -6,11 +6,12 @@ const session = reactive( {
     user:  null as User | any,
 });
 
-export function login(firstName: string, lastName: string, friends: string[]) {
+export function login(firstName: string, lastName: string, friends: string[], image: string) {
     session.user = {
         firstName,
         lastName,
         friends,
+        image,
     };
 }
 
@@ -22,6 +23,7 @@ export class User {
     firstName?: string;
     lastName?: string;
     friends?: string[];
+    image?: string;
     
 }
 export default session;

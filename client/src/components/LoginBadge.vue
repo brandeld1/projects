@@ -8,7 +8,7 @@ import session, { login, logout } from '../stores/session';
     function checkName(newFirstName2:string, newLastName2:string){
         for(let x=0;x<session.users.length;x++){
             if(session.users[x].firstName == newFirstName2 && session.users[x].lastName == newLastName2){
-                login(newFirstName2,newLastName2, session.users[x].friends);
+                login(newFirstName2,newLastName2, session.users[x].friends, session.users[x].image);
             }
         }
     }
