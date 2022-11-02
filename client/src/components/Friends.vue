@@ -27,17 +27,24 @@
 
 <template>
     <ul><table class=" table is-bordered">
-        <tr>
-            <th>First Name of Friend</th>
-            <th>Name of Workout</th>
-            <th>Reps</th>
-            <th>Sets</th>
-        </tr>
+        
         <tr v-for="item in workoutSession.friendsWorkouts">
-        <td>{{ item.owningUser.firstName }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.reps }}</td>
-        <td>{{ item.sets }}</td>
+            <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                          <img :src=item.owningUser.image>
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                        <div class="content">
+                          <p>
+                            <strong>{{item.name}}</strong>
+                            
+                            Reps/Time: {{item.reps}},  Sets/Repition: {{item.sets}} <br> <img :src="item.image" width="512" height="512">
+                          </p>
+                        </div>
+                      </div>
+                    </article>
     </tr>
         </table>
     </ul>

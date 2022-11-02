@@ -14,12 +14,14 @@ export class Workout {
     name?: string;
     reps?: number;
     sets?: number;
+    newImage?: string;
 }
 
 export class tempVars {
     newName?: string;
     newReps?: number;
     newSets?: number;
+    newImage?: string;
 }
 
 export default workoutSession;

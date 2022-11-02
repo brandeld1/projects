@@ -8,15 +8,16 @@ import session, {} from '../stores/session'
     var newName: string;
     var newReps: number;
     var newSets: number;
+    var newImage: string;
 
-
-  function addToWorkouts(newName2: any, newReps2: any, newSets2: any) {
+  function addToWorkouts(newName2: string, newReps2: number, newSets2: number, newImage2: string) {
     var date= new Date();
     const workout= {
         owningUser: session.user,
         name: newName2,
         reps: newReps2,
         sets: newSets2,
+        image: newImage2,
         time: '',
     }
     workoutSession.workouts.push(workout);
@@ -36,7 +37,8 @@ import session, {} from '../stores/session'
                 <li><input class="input is-primary" v-model="newName" placeholder="Enter Workout Name"></li>
                 <li><input class="input is-primary" v-model="newReps" placeholder="Enter Reps/Time"></li>
                 <li><input class="input is-primary" v-model="newSets" placeholder="Enter Sets/Repition"></li>
-                <li><button class="button is-primary actionButton" @click="addToWorkouts(newName,newReps,newSets)">Add new workout</button></li>
+                <li><input class="input is-primary" v-model="newImage" placeholder="Enter Image Of Workout"></li>
+                <li><button class="button is-primary actionButton" @click="addToWorkouts(newName,newReps,newSets,newImage)">Add new workout</button></li>
             </ul>
         </div>
         <div class="column is-mobile">
@@ -48,13 +50,14 @@ import session, {} from '../stores/session'
                             <th>Workout</th>
                             <th>Reps</th>
                             <th>Sets</th>
+                            <th>Image</th>
                         </tr>
                         <tr v-for="item in workoutSession.workouts">
-                        
                             <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.owningUser.firstName }}</td>
                             <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.name }}</td>
                             <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.reps }}</td>
                             <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.sets }}</td>
+                            <td v-if="item.owningUser.firstName==session.user.firstName"><img :src="item.image" width="112" height="28"></td>
                         
                         </tr>
                     </table></li>
