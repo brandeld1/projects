@@ -2,7 +2,7 @@
 
 import { onBeforeMount, reactive } from 'vue';
 
-import workoutSession from '../stores/workouts'
+import workoutSession, {addToWorkouts} from '../stores/workouts'
 import session, {} from '../stores/session'
 
     var newName: string;
@@ -10,6 +10,7 @@ import session, {} from '../stores/session'
     var newSets: number;
     var newImage: string;
 
+    /*
   function addToWorkouts(newName2: string, newReps2: number, newSets2: number, newImage2: string) {
     var date= new Date();
     const workout= {
@@ -25,8 +26,7 @@ import session, {} from '../stores/session'
 
   function popWorkout(){
     workoutSession.workouts.pop();
-  }
-
+  }*/
 </script>
 
 <template>
@@ -38,7 +38,7 @@ import session, {} from '../stores/session'
                 <li><input class="input is-primary" v-model="newReps" placeholder="Enter Reps/Time"></li>
                 <li><input class="input is-primary" v-model="newSets" placeholder="Enter Sets/Repition"></li>
                 <li><input class="input is-primary" v-model="newImage" placeholder="Enter Image Of Workout"></li>
-                <li><button class="button is-primary actionButton" @click="addToWorkouts(newName,newReps,newSets,newImage)">Add new workout</button></li>
+                <li><button class="button is-primary actionButton" @click=workoutSession.addToWorkouts(newName, newReps, newSets, newImage)>Add new workout</button></li>
             </ul>
         </div>
         <div class="column is-mobile">

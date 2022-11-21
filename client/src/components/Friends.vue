@@ -3,6 +3,7 @@
     import session  from '../stores/session'
     import workoutSession from '../stores/workouts'
 
+    /*
         function getFriends(){
             for(let y=0;y<workoutSession.friendsWorkouts.length;y++){
                 workoutSession.friendsWorkouts.pop();
@@ -20,7 +21,7 @@
                 }
             }
         }
-        onBeforeMount(getFriends);
+        onBeforeMount(getFriends);*/
 
 </script>
 

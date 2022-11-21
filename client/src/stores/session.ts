@@ -20,10 +20,10 @@ export function logout() {
 }
 
 export class User {
-    firstName?: string;
-    lastName?: string;
-    friends?: string[];
-    image?: string;
+    firstName!: string;
+    lastName!: string;
+    friends!: string[];
+    image!: string;
     
 }
 export default session;

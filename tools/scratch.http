@@ -7,7 +7,14 @@ http://127.0.0.1:3000/api/v1/products/6
 ###
 http://127.0.0.1:3000/api/v1/workout/damien
 ###
-POST http://127.0.0.1:3000/api/v1/workout/damien/situp/1/1
+POST http://127.0.0.1:3000/api/v1/workout/damien
+Content-Type: application/json
+
+{
+    "reps": 3,
+    "sets": 5,
+    "name": "pushup"
+}
 
 ###
-DELETE http://127.0.0.1:3000/api/v1/workout/damien/pushup
+PATCH http://127.0.0.1:3000/api/v1/workout/damien/pushup

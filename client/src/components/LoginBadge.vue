@@ -12,13 +12,6 @@ import session, { login, logout } from '../stores/session';
             }
         }
     }
-
-    function clear(){
-        logout();
-        for(let x=0;x<workoutSession.tempWorkouts.length;x++){
-            workoutSession.tempWorkouts.pop();
-        }
-    }
 </script>
 
 <template>
@@ -38,7 +31,7 @@ import session, { login, logout } from '../stores/session';
     </div>
     <div v-else>
         Welcome {{session.user.firstName}} {{session.user.lastName}}
-        (<a @click="clear()">
+        (<a @click="logout()">
             Log out
         </a>)
     </div>
