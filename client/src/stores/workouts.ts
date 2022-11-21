@@ -3,9 +3,9 @@ import { reactive, VueElement } from "vue";
 import session from './session'
 import type {User} from './session'
 
-const workoutSession = reactive( {
-    workouts: Array<Workout>(),
-});
+export function getWorkouts() {
+    return workoutsList;
+}
 
 export function addToWorkouts(newName: string, newReps: number, 
                                 newSets: number, newImage: string) {
@@ -18,12 +18,12 @@ export function addToWorkouts(newName: string, newReps: number,
         completed: false,
         time: '',
     }
-    if(workoutSession.workouts == null) {
-        workoutSession.workouts = [workout];
-    }
-    else{
-        workoutSession.workouts.push(workout);
-    }
+    workoutsList.push(workout);
+    console.log(workoutsList);
+}
+
+export function popWorkout(){
+    workoutsList.pop();
 }
 
 export function getFriends(){
@@ -35,13 +35,13 @@ export function getFriends(){
     }
 
 
-    if(workoutSession.workouts!==null){
-        for(let x=0;x<workoutSession.workouts.length;x++){
+    if(workoutsList!==null){
+        for(let x=0;x<workoutsList.length;x++){
             for(let y=0;y<friendsArr.length;y++){
 
-                    if(workoutSession.workouts[x].owningUser.firstName==friendsArr[y] && 
-                        workoutSession.workouts[x].completed==true){
-                        friendsWorkouts.push(workoutSession.workouts[x]);
+                    if(workoutsList[x].owningUser.firstName==friendsArr[y] && 
+                        workoutsList[x].completed==true){
+                        friendsWorkouts.push(workoutsList[x]);
                     }
                 }
             
@@ -51,14 +51,16 @@ export function getFriends(){
     return friendsWorkouts;
 }
 
-export class Workout {
-    owningUser!: User;
-    name!: string;
-    reps!: number;
-    sets!: number;
-    image!: string;
-    completed!: boolean;
-    time!: string;
+const workoutsList = reactive([] as Workout[])
+
+export interface Workout {
+    owningUser: User;
+    name: string;
+    reps: number;
+    sets: number;
+    image: string;
+    completed: boolean;
+    time: string;
 }
 
-export default workoutSession;
+export default workoutsList;

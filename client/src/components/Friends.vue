@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { onBeforeMount } from "vue";
     import session  from '../stores/session'
-    import workoutSession from '../stores/workouts'
+    import { getFriends } from '../stores/workouts'
 
     /*
         function getFriends(){
@@ -29,7 +29,7 @@
 <template>
     <ul><table class=" table is-bordered">
         
-        <tr v-for="item in workoutSession.friendsWorkouts">
+        <tr v-for="item in getFriends()">
             <article class="media">
                       <figure class="media-left">
                         <p class="image is-64x64">
