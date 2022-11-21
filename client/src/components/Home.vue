@@ -1,9 +1,11 @@
 <!-- eslint-disable prettier/prettier -->
 
 <script setup lang="ts">
-    import workoutSession from '../stores/workouts'
+    import workoutsList from '../stores/workouts'
+    import { addToCompletedWorkouts } from '../stores/workouts'
     import session from '../stores/session'
 
+    /*
     function addToCompletedWorkouts() {
       while(workoutSession.workouts.length!=0){
         var today = new Date();
@@ -11,7 +13,7 @@
         workoutHistory.time=(today.getMonth()+1)+'/'+today.getDate();
         workoutSession.completedWorkouts.push(workoutHistory);
       };
-    }
+    }*/
 
 </script>
 
@@ -22,8 +24,8 @@
                   Do you want to post these workouts?
                 </p>
 
-                <div v-for="item in workoutSession.workouts">
-                  <div v-if="item.owningUser.firstName==session.user.firstName">
+                <div v-for="item in workoutsList">
+                  <div v-if="item.owningUser.firstName==session.user.firstName && item.completed == false">
                     <article class="media">
                       <figure class="media-left">
                         <p class="image is-64x64">

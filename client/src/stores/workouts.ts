@@ -22,6 +22,16 @@ export function addToWorkouts(newName: string, newReps: number,
     console.log(workoutsList);
 }
 
+export function addToCompletedWorkouts() {
+      for(let i=0;i<workoutsList.length;i++){
+        if(workoutsList[i].owningUser === session.user){
+            var today = new Date();
+            workoutsList[i].time=today.getMonth()+1+'/'+today.getDate();
+            workoutsList[i].completed=true;
+        }
+      }
+      };
+
 export function popWorkout(){
     workoutsList.pop();
 }
@@ -50,6 +60,7 @@ export function getFriends(){
 
     return friendsWorkouts;
 }
+
 
 const workoutsList = reactive([] as Workout[])
 
