@@ -9,14 +9,16 @@
 
 <template>
     <div v-for="item in workoutsList">
-     <label class="panel-block" v-if="item.owningUser.firstName==session.user.firstName">
-        <div v-if="item.owningUser.firstName==session.user.firstName">Name: {{ item.name }},</div>
-        <div v-if="item.owningUser.firstName==session.user.firstName">Reps: {{ item.reps }},</div>
-        <div v-if="item.owningUser.firstName==session.user.firstName">Sets: {{ item.sets }},</div>
-        <div v-if="item.owningUser.firstName==session.user.firstName">Time: {{ item.time }},</div>
-        <div><div v-if="item.owningUser.firstName==session.user.firstName"><img :src="item.image" width="112" height="28"></div></div>
-    </label>
-</div>
+        <div v-if="item.completed == true && item.owningUser == session.user.firstName">
+            <label class="panel-block">
+                <div>Name: {{ item.name }},</div>
+                <div>Reps: {{ item.reps }},</div>
+                <div>Sets: {{ item.sets }},</div>
+                <div>Time: {{ item.time }},</div>
+                <div><div><img :src="item.image" width="112" height="28"></div></div>
+            </label>
+        </div>
+    </div>
 </template>
 
     

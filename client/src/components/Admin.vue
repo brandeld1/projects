@@ -16,7 +16,7 @@ import session from '../stores/session'
         image: newImage2,
     }
     session.users.push(user);
-    console.log(newImage);
+    //console.log(newImage);
   }
 
   function popUser(){

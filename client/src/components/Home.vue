@@ -3,17 +3,7 @@
 <script setup lang="ts">
     import workoutsList from '../stores/workouts'
     import { addToCompletedWorkouts } from '../stores/workouts'
-    import session from '../stores/session'
 
-    /*
-    function addToCompletedWorkouts() {
-      while(workoutSession.workouts.length!=0){
-        var today = new Date();
-        const workoutHistory = workoutSession.workouts.pop();
-        workoutHistory.time=(today.getMonth()+1)+'/'+today.getDate();
-        workoutSession.completedWorkouts.push(workoutHistory);
-      };
-    }*/
 
 </script>
 
@@ -25,7 +15,7 @@
                 </p>
 
                 <div v-for="item in workoutsList">
-                  <div v-if="item.owningUser.firstName==session.user.firstName && item.completed == false">
+                  <div v-if="item.completed == false">
                     <article class="media">
                       <figure class="media-left">
                         <p class="image is-64x64">
@@ -45,7 +35,7 @@
                   </div>
                   
                 </div>
-</div> 
+    </div> 
   <button class = "button is-primary actionButton" @click="addToCompletedWorkouts()">Workouts Completed</button>
 </template>
 

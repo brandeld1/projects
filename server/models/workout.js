@@ -1,29 +1,59 @@
 
-// Workout: { id: 1, name: pushup, sets: 1, reps: 1, owningUser: 'mp@np.edu' }
+/*const workout= {
+        owningUser: session.user,
+        name: newName,
+        reps: newReps,
+        sets: newSets,
+        image: newImage,
+        completed: false,
+        time: '',
+    }*/
 const list = [];
 
-;
-const add = (sets, owningUser, reps, name) => {
+/**
+ * @param {string} owningUser 
+ * @param {string} name
+ * @param {number} reps
+ * @param {number} sets
+ * @param {string} image
+ * @param {boolean} completed
+ * @param {string} time
+ * @returns 
+ */
+
+const add = (owningUser, name, reps, sets, image, completed, time) => {
     let workout = list.find((workout) => workout.owningUser === owningUser && workout.name == name);
     if (workout) {
-        workout.sets += +sets;
-        workout.reps += +reps;
+        workout.sets = parseInt(workout.sets)+parseInt(sets);
+        workout.reps = parseInt(workout.reps)+parseInt(reps);
 
     } else {
-        list.push({ id: list.length + 1, name, sets: +sets, reps: +reps, owningUser });
+        workout = { owningUser, name, reps, sets, image, completed, time };
+        list.push(workout);
     }
-    return list.find((workout) => workout.owningUser === owningUser && workout.name == name);
+    return workout;
 };
 
 const get = (owningUser) => {
-    return list.filter((workout) => workout.owningUser === owningUser);
+    return list;
 };
 
-const update = (owningUser, name) => {
-  const index = list.findIndex((workout) => workout.owningUser === owningUser && workout.name == name);
-  if (index > -1) {
-    list.splice(index, 1);
-  }
+const update = (owningUser, name, completed) => {
+    if(completed){
+        for(let i = 0; i<list.length; i++){
+            if(list[i].owningUser === owningUser){
+                list[i].completed = true;
+                list[i].time = new Date().toLocaleString();
+            }
+        }
+    }
+    else{
+        const index = list.findIndex((workout) => workout.name == name);
+        if (index > -1) {
+            list.splice(index, 1);
+        }
+    }
+    return "null";
 }
 
 module.exports = { add, get, update }

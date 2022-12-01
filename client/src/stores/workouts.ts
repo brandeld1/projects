@@ -1,55 +1,81 @@
-import { reactive, VueElement } from "vue";
+import { reactive, VueElement, watch } from "vue";
 
 import session from './session'
 import type {User} from './session'
+import myFetch from "@/services/myFetch";
 
-export function getWorkouts() {
-    return workoutsList;
+
+const PATCH =  'PATCH';
+
+export function load() {
+    myFetch(`workout/${session.user?.firstName}`).then((data) => {
+        workoutsList.splice(0, workoutsList.length, ...data as Workout[]);
+    });
+}
+watch(()=> session.user, load);
+
+export function getMyWorkouts(){
+    let myWorkouts: Array<Workout> = [];
+    for(let i=0;i<workoutsList.length;i++){
+        if(workoutsList[i].owningUser == session.user?.firstName){
+            myWorkouts.push(workoutsList[i]);
+        }
+    }
+    return myWorkouts;
 }
 
 export function addToWorkouts(newName: string, newReps: number, 
                                 newSets: number, newImage: string) {
-    const workout= {
-        owningUser: session.user,
-        name: newName,
-        reps: newReps,
-        sets: newSets,
-        image: newImage,
-        completed: false,
-        time: '',
-    }
-    workoutsList.push(workout);
-    console.log(workoutsList);
+    myFetch(`workout/${session.user?.firstName}`, 
+                { name: newName, reps: newReps, 
+                    sets: newSets, image: newImage, 
+                    completed:false, time:''}).then((data) => {
+                       const i = workoutsList.findIndex((w) => w.name === newName);
+                       if( i != -1 ){
+                            workoutsList[i] = data as Workout;
+                       }
+                          else{ 
+                            workoutsList.push(data as Workout);
+                          }
+                    });
 }
 
 export function addToCompletedWorkouts() {
-      for(let i=0;i<workoutsList.length;i++){
-        if(workoutsList[i].owningUser === session.user){
-            var today = new Date();
-            workoutsList[i].time=today.getMonth()+1+'/'+today.getDate();
-            workoutsList[i].completed=true;
+    myFetch(`workout/${session.user?.firstName}/${"null"}/${true}`, {}, PATCH).then((data) => {
+        for(let i = 0; i<workoutsList.length; i++){
+            if(workoutsList[i].owningUser === session.user.firstName && workoutsList[i].completed === false){
+                workoutsList[i].completed = true;
+                workoutsList[i].time = new Date().toLocaleString();
+            }
         }
-      }
-      };
+    });
+}
 
-export function popWorkout(){
-    workoutsList.pop();
+export function removeWorkout(newName: string){
+    myFetch(`workout/${session.user?.firstName}/${newName}/${false}`, {}, PATCH).then((data) => {
+        const i = workoutsList.findIndex((w) => w.name === newName);
+        if( i != -1 ){
+            workoutsList.splice(i,1);
+        }
+    });
 }
 
 export function getFriends(){
     let friendsWorkouts: Array<Workout> = [];
 
     var friendsArr=[];
-    if(session.user.friends!=null){
+    if(session.user.friends!==null){
         friendsArr=session.user.friends;
     }
 
 
+    console.log(workoutsList);
     if(workoutsList!==null){
         for(let x=0;x<workoutsList.length;x++){
             for(let y=0;y<friendsArr.length;y++){
-
-                    if(workoutsList[x].owningUser.firstName==friendsArr[y] && 
+                    //console.log(workoutsList);
+                    //console.log(workoutsList[x].owningUser);
+                    if(workoutsList[x].owningUser==friendsArr[y] && 
                         workoutsList[x].completed==true){
                         friendsWorkouts.push(workoutsList[x]);
                     }

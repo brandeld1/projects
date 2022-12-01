@@ -1,36 +1,15 @@
 <script setup lang="ts">
 
-import { onBeforeMount, reactive } from 'vue';
+import {addToWorkouts, removeWorkout} from '../stores/workouts'
+import workoutsList from '../stores/workouts'
 
-import {addToWorkouts, getWorkouts, popWorkout} from '../stores/workouts'
-import workoutLis from '../stores/workouts'
-
-import session, {} from '../stores/session'
 
     var newName: string;
     var newReps: number;
     var newSets: number;
     var newImage: string;
-
-    const workoutList = reactive(getWorkouts());
-
-    /*
-  function addToWorkouts(newName2: string, newReps2: number, newSets2: number, newImage2: string) {
-    var date= new Date();
-    const workout= {
-        owningUser: session.user,
-        name: newName2,
-        reps: newReps2,
-        sets: newSets2,
-        image: newImage2,
-        time: '',
-    }
-    workoutSession.workouts.push(workout);
-  }
-
-  function popWorkout(){
-    workoutSession.workouts.pop();
-  }*/
+    var removeName: string;
+    
 </script>
 
 <template>
@@ -56,16 +35,17 @@ import session, {} from '../stores/session'
                             <th>Sets</th>
                             <th>Image</th>
                         </tr>
-                        <tr v-for="item in workoutList">
-                            <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.owningUser.firstName }}</td>
-                            <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.name }}</td>
-                            <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.reps }}</td>
-                            <td v-if="item.owningUser.firstName==session.user.firstName">{{ item.sets }}</td>
-                            <td v-if="item.owningUser.firstName==session.user.firstName"><img :src="item.image" width="112" height="28"></td>
+                        <tr v-for="item in workoutsList">
+                            <td v-if="(item.completed == false)">{{ item.owningUser }}</td>
+                            <td v-if="(item.completed == false)">{{ item.name }}</td>
+                            <td v-if="(item.completed == false)">{{ item.reps }}</td>
+                            <td v-if="(item.completed == false)">{{ item.sets }}</td>
+                            <td v-if="(item.completed == false)"><img :src="item.image" width="112" height="28"></td>
                         
                         </tr>
                     </table></li>
-                    <li><button class = "button is-primary actionButton" @click="popWorkout()">Remove workout</button></li>
+                    <li><input class="input is-primary" v-model="removeName" placeholder="Enter Image Of Workout"></li>
+                    <li><button class = "button is-primary actionButton" @click="removeWorkout(removeName)">Remove workout</button></li>
                 </ul>
         </div>
     </div>
