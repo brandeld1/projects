@@ -4,7 +4,7 @@ const app = express()
 const workoutController = require('./controllers/workout');
 
 const hostname = '127.0.0.1';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3003;
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

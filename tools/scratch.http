@@ -1,23 +1,23 @@
 
-http://127.0.0.1:3000/api/v1/products/
+http://127.0.0.1:3003/api/v1/workout/1
 
 ###
 http://127.0.0.1:3000/api/v1/products/6
 
 ###
-http://127.0.0.1:3000/api/v1/workout/1
+http://localhost:3003/api/v1/workout/1
 ###
-POST http://127.0.0.1:3000/api/v1/workout/1
+POST http://127.0.0.1:3003/api/v1/workout/1
 Content-Type: application/json
 
 {
     "name": "9",
-    "reps": 123,
-    "sets": 123,
+    "reps": 443,
+    "sets": 1443,
     "image": "1",
     "completed": false,
-    "time": "1"
+    "time": ""
 }
 
 ###
-PATCH http://127.0.0.1:3000/api/v1/workout/1/null/true
+PATCH http://127.0.0.1:3003/api/v1/workout/1/null/true

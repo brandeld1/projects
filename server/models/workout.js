@@ -1,14 +1,11 @@
-
-/*const workout= {
-        owningUser: session.user,
-        name: newName,
-        reps: newReps,
-        sets: newSets,
-        image: newImage,
-        completed: false,
-        time: '',
-    }*/
 const list = [];
+const { connect } = require('./mongo');
+const COLLECTION_NAME = 'workout';
+
+async function collection() {
+    const client = await connect();
+    return client.db('social_work').collection(COLLECTION_NAME);
+}
 
 /**
  * @param {string} owningUser 
@@ -21,39 +18,57 @@ const list = [];
  * @returns 
  */
 
-const add = (owningUser, name, reps, sets, image, completed, time) => {
-    let workout = list.find((workout) => workout.owningUser === owningUser && workout.name == name);
+async function addWorkout(owningUser, name, reps, sets, image, completed, time) {
+//const add = async (owningUser, name, reps, sets, image, completed, time) => {
+    const db = await collection();
+    let workout = db.find({ owningUser: owningUser, name: name });
+    console.log(workout);
+    //let workout = list.find((workout) => workout.owningUser === owningUser && workout.name == name);
     if (workout) {
-        workout.sets = parseInt(workout.sets)+parseInt(sets);
-        workout.reps = parseInt(workout.reps)+parseInt(reps);
+        //workout.sets = parseInt(workout.sets)+parseInt(sets);
+        //workout.reps = parseInt(workout.reps)+parseInt(reps);
+
+        //LEAVING OFF WHERE I DONT KNOW HOW TO ADD THE CURRENT VALUE OF SETS AND REPS
+        //TO THE NEW GIVEN VALUE OF SETS AND REPS. I THINK I NEED TO USE THE $INC
+        //OPERATOR BUT I DONT KNOW HOW TO USE IT. I THINK I NEED TO USE IT IN THE
+        //UPDATEONE FUNCTION BUT I DONT KNOW HOW TO USE IT. I THINK I NEED TO USE IT
+        //IN THE UPDATEONE FUNCTION BUT I DONT KNOW HOW TO USE IT. I THINK I NEED TO
+        //USE IT IN THE UPDATEONE FUNCTION BUT I DONT KNOW HOW TO USE IT. I THINK I
+        db.updateOne(workout, 
+            {$set: {sets: workout.sets+sets,
+                reps: reps+1245}});
+            return db.findOne({owningUser: owningUser, name: name});
 
     } else {
         workout = { owningUser, name, reps, sets, image, completed, time };
-        list.push(workout);
+        //list.push(workout);
+        db.insertOne(workout);
+        return workout;
     }
-    return workout;
+    //return "a";
 };
 
-const get = (owningUser) => {
-    return list;
-};
 
-const update = (owningUser, name, completed) => {
+async function getWorkouts() {
+    const db = await collection();
+    const data = db.find().toArray();
+    return data;
+}
+
+
+//const update = async (owningUser, name, completed) => {
+async function updateWorkout(owningUser, name, completed) {
+    const db = await collection();
     if(completed){
-        for(let i = 0; i<list.length; i++){
-            if(list[i].owningUser === owningUser){
-                list[i].completed = true;
-                list[i].time = new Date().toLocaleString();
-            }
-        }
+        db.updateOne({owningUser: owningUser}, 
+            {$set: {completed:true , time: new Date().toLocaleString()}});
+        return 'success';
     }
     else{
-        const index = list.findIndex((workout) => workout.name == name);
-        if (index > -1) {
-            list.splice(index, 1);
-        }
+        db.deleteOne({name}, list[index]);
+        return 'deleted';
     }
     return "null";
 }
 
-module.exports = { add, get, update }
+module.exports = { addWorkout, getWorkouts, updateWorkout }
