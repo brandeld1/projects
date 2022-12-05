@@ -7,10 +7,23 @@ import myFetch from "@/services/myFetch";
 
 const PATCH =  'PATCH';
 
+export interface Workout {
+    owningUser: User;
+    name: string;
+    reps: number;
+    sets: number;
+    image: string;
+    completed: boolean;
+    time: string;
+}
+
+const workoutsList = reactive([] as Workout[])
+
 export function load() {
     myFetch(`workout/${session.user?.firstName}`).then((data) => {
         workoutsList.splice(0, workoutsList.length, ...data as Workout[]);
-    });
+     });
+
 }
 watch(()=> session.user, load);
 
@@ -64,17 +77,13 @@ export function getFriends(){
     let friendsWorkouts: Array<Workout> = [];
 
     var friendsArr=[];
-    if(session.user.friends!==null){
+    if(session.user != null){
         friendsArr=session.user.friends;
     }
 
-
-    console.log(workoutsList);
     if(workoutsList!==null){
         for(let x=0;x<workoutsList.length;x++){
             for(let y=0;y<friendsArr.length;y++){
-                    //console.log(workoutsList);
-                    //console.log(workoutsList[x].owningUser);
                     if(workoutsList[x].owningUser==friendsArr[y] && 
                         workoutsList[x].completed==true){
                         friendsWorkouts.push(workoutsList[x]);
@@ -85,19 +94,6 @@ export function getFriends(){
     }
 
     return friendsWorkouts;
-}
-
-
-const workoutsList = reactive([] as Workout[])
-
-export interface Workout {
-    owningUser: User;
-    name: string;
-    reps: number;
-    sets: number;
-    image: string;
-    completed: boolean;
-    time: string;
 }
 
 export default workoutsList;

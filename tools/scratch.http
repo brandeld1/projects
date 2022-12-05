@@ -11,9 +11,9 @@ POST http://127.0.0.1:3003/api/v1/workout/1
 Content-Type: application/json
 
 {
-    "name": "9",
-    "reps": 443,
-    "sets": 1443,
+    "name": "27",
+    "reps": 27,
+    "sets": 27,
     "image": "1",
     "completed": false,
     "time": ""

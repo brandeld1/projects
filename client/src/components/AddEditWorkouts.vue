@@ -2,6 +2,7 @@
 
 import {addToWorkouts, removeWorkout} from '../stores/workouts'
 import workoutsList from '../stores/workouts'
+import session from '../stores/session'
 
 
     var newName: string;
@@ -29,18 +30,17 @@ import workoutsList from '../stores/workouts'
                 <ul>
                     <li><table class=" table is-bordered">
                         <tr>
-                            <th>Name</th>
                             <th>Workout</th>
                             <th>Reps</th>
                             <th>Sets</th>
                             <th>Image</th>
                         </tr>
-                        <tr v-for="item in workoutsList">
-                            <td v-if="(item.completed == false)">{{ item.owningUser }}</td>
-                            <td v-if="(item.completed == false)">{{ item.name }}</td>
-                            <td v-if="(item.completed == false)">{{ item.reps }}</td>
-                            <td v-if="(item.completed == false)">{{ item.sets }}</td>
-                            <td v-if="(item.completed == false)"><img :src="item.image" width="112" height="28"></td>
+                        
+                        <tr  v-if="session.user != null" v-for="item in workoutsList">
+                            <td v-if="(item.completed == false && item.owningUser == session.user.firstName)">{{ item.name }}</td>
+                            <td v-if="(item.completed == false && item.owningUser == session.user.firstName)">{{ item.reps }}</td>
+                            <td v-if="(item.completed == false && item.owningUser == session.user.firstName)">{{ item.sets }}</td>
+                            <td v-if="(item.completed == false && item.owningUser == session.user.firstName)"><img :src="item.image" width="112" height="28"></td>
                         
                         </tr>
                     </table></li>

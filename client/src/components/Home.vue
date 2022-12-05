@@ -1,8 +1,8 @@
 <!-- eslint-disable prettier/prettier -->
-
 <script setup lang="ts">
     import workoutsList from '../stores/workouts'
     import { addToCompletedWorkouts } from '../stores/workouts'
+    import session from '../stores/session'
 
 
 </script>
@@ -13,28 +13,28 @@
               <p class="panel-heading">
                   Do you want to post these workouts?
                 </p>
-
-                <div v-for="item in workoutsList">
-                  <div v-if="item.completed == false">
-                    <article class="media">
-                      <figure class="media-left">
-                        <p class="image is-64x64">
-                          <img :src=item.owningUser.image>
-                        </p>
-                      </figure>
-                      <div class="media-content">
-                        <div class="content">
-                          <p>
-                            <strong>{{item.name}}</strong>
-                            
-                            Reps/Time: {{item.reps}},  Sets/Repition: {{item.sets}} <br> <img :src="item.image" width="512" height="512">
+                  <div  v-if="session.user != null" v-for="item in workoutsList">
+                    <div v-if="(item.completed == false && item.owningUser == session.user.firstName)">
+                      <article class="media">
+                        <figure class="media-left">
+                          <p class="image is-64x64">
+                            <img :src=item.owningUser.image>
                           </p>
+                        </figure>
+                        <div class="media-content">
+                          <div class="content">
+                            <p>
+                              <strong>{{item.name}}</strong>
+                              
+                              Reps/Time: {{item.reps}},  Sets/Repition: {{item.sets}} <br> <img :src="item.image" width="512" height="512">
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </article>
+                      </article>
+                    </div>
+                    
                   </div>
-                  
-                </div>
+              
     </div> 
   <button class = "button is-primary actionButton" @click="addToCompletedWorkouts()">Workouts Completed</button>
 </template>

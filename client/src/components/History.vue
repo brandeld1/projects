@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <div v-for="item in workoutsList">
+    <div  v-if="session.user != null" v-for="item in workoutsList">
         <div v-if="item.completed == true && item.owningUser == session.user.firstName">
             <label class="panel-block">
                 <div>Name: {{ item.name }},</div>

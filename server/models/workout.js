@@ -18,38 +18,22 @@ async function collection() {
  * @returns 
  */
 
-async function addWorkout(owningUser, name, reps, sets, image, completed, time) {
-//const add = async (owningUser, name, reps, sets, image, completed, time) => {
+const add = async (owningUser, name, reps, sets, image, completed, time) =>{
     const db = await collection();
-    let workout = db.find({ owningUser: owningUser, name: name });
-    console.log(workout);
-    //let workout = list.find((workout) => workout.owningUser === owningUser && workout.name == name);
-    if (workout) {
-        //workout.sets = parseInt(workout.sets)+parseInt(sets);
-        //workout.reps = parseInt(workout.reps)+parseInt(reps);
-
-        //LEAVING OFF WHERE I DONT KNOW HOW TO ADD THE CURRENT VALUE OF SETS AND REPS
-        //TO THE NEW GIVEN VALUE OF SETS AND REPS. I THINK I NEED TO USE THE $INC
-        //OPERATOR BUT I DONT KNOW HOW TO USE IT. I THINK I NEED TO USE IT IN THE
-        //UPDATEONE FUNCTION BUT I DONT KNOW HOW TO USE IT. I THINK I NEED TO USE IT
-        //IN THE UPDATEONE FUNCTION BUT I DONT KNOW HOW TO USE IT. I THINK I NEED TO
-        //USE IT IN THE UPDATEONE FUNCTION BUT I DONT KNOW HOW TO USE IT. I THINK I
-        db.updateOne(workout, 
-            {$set: {sets: workout.sets+sets,
-                reps: reps+1245}});
-            return db.findOne({owningUser: owningUser, name: name});
-
+    let workoutItem = await db.findOne({ owningUser, name })
+    if (workoutItem) {
+        workoutItem.sets = parseInt(workoutItem.sets)+parseInt(sets);
+        workoutItem.reps = parseInt(workoutItem.reps)+parseInt(reps);
+        db.updateOne({ owningUser, name }, { $set: workoutItem })
     } else {
-        workout = { owningUser, name, reps, sets, image, completed, time };
-        //list.push(workout);
-        db.insertOne(workout);
-        return workout;
+        workoutItem = { owningUser, name, reps, sets, image, completed, time };
+        //list.push(cartItem);
+        await db.insertOne(workoutItem)
     }
-    //return "a";
+    return { ...workoutItem};
 };
 
-
-async function getWorkouts() {
+const get = async () => {
     const db = await collection();
     const data = db.find().toArray();
     return data;
@@ -57,18 +41,17 @@ async function getWorkouts() {
 
 
 //const update = async (owningUser, name, completed) => {
-async function updateWorkout(owningUser, name, completed) {
+const update = async (owningUser, name, completed) => {
     const db = await collection();
     if(completed){
-        db.updateOne({owningUser: owningUser}, 
+        db.updateMany({owningUser: owningUser}, 
             {$set: {completed:true , time: new Date().toLocaleString()}});
-        return 'success';
+        return db.find({owningUser: owningUser, name: name, completed: true}).toArray();
     }
     else{
-        db.deleteOne({name}, list[index]);
-        return 'deleted';
+        return db.deleteMany({owningUser: owningUser, name: name});
     }
     return "null";
 }
 
-module.exports = { addWorkout, getWorkouts, updateWorkout }
+module.exports = { add, get, update }
