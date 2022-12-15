@@ -18,9 +18,10 @@ export interface Workout {
 }
 
 const workoutsList = reactive([] as Workout[])
+const suggestions = reactive([] as Workout[])
 
 export function load() {
-    myFetch(`workout/${session.user?.firstName}`).then((data) => {
+    myFetch(`workout/${"0"}/${0}`).then((data) => {
         workoutsList.splice(0, workoutsList.length, ...data as Workout[]);
      });
 
@@ -36,6 +37,18 @@ export function getMyWorkouts(){
     }
     return myWorkouts;
 }
+
+export function getAutocomplete(input: string){
+    myFetch(`workout/${input}/${1}`).then((data) => {
+        suggestions.splice(0, suggestions.length, ...data as Workout[]);
+        let suggestionsArr = [];
+        for(let i=0;i<suggestions.length;i++){
+            suggestionsArr.push(suggestions[i].name);
+        }
+        return suggestionsArr;
+     });
+}
+
 
 export function addToWorkouts(newName: string, newReps: number, 
                                 newSets: number, newImage: string) {

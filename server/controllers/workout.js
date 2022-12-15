@@ -13,10 +13,18 @@ const app = express.Router();
         time: '',
     }*/
 
-app.get('/:owningUser', (req, res, next) => {
-    get()
+app.get('/:name/:autocomplete', (req, res, next) => {
+    if(req.params.autocomplete){
+        get(req.params.name,req.params.autocomplete)
             .then(x => res.status(200).send(x))
             .catch(next);
+    }
+    else{
+        console.log("0");
+        get("0",0)
+        .then(x => res.status(200).send(x))
+            .catch(next);
+    }
 });
 
 app.post('/:owningUser', (req, res, next) => {

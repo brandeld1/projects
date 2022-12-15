@@ -1,15 +1,17 @@
 <script setup lang="ts">
 
-import {addToWorkouts, removeWorkout} from '../stores/workouts'
+import {addToWorkouts, removeWorkout, getAutocomplete} from '../stores/workouts'
 import workoutsList from '../stores/workouts'
 import session from '../stores/session'
-
+import { ref } from 'vue';
 
     var newName: string;
     var newReps: number;
     var newSets: number;
     var newImage: string;
     var removeName: string;
+
+    const input = ref("");
     
 </script>
 
@@ -18,7 +20,8 @@ import session from '../stores/session'
         <div class="column is-mobile">
             <h2 class="title is-4">Enter new workout</h2>
             <ul>
-                <li><input class="input is-primary" v-model="newName" placeholder="Enter Workout Name"></li>
+                <li><input class="input is-primary" v-model="input" placeholder="Enter Workout Name"></li>
+                <div v-for="item in getAutocomplete(input)"> {{ item }} </div>
                 <li><input class="input is-primary" v-model="newReps" placeholder="Enter Reps/Time"></li>
                 <li><input class="input is-primary" v-model="newSets" placeholder="Enter Sets/Repition"></li>
                 <li><input class="input is-primary" v-model="newImage" placeholder="Enter Image Of Workout"></li>

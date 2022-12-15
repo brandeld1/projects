@@ -15,6 +15,7 @@ async function collection() {
  * @param {string} image
  * @param {boolean} completed
  * @param {string} time
+ * @param {number} autocomplete
  * @returns 
  */
 
@@ -33,10 +34,16 @@ const add = async (owningUser, name, reps, sets, image, completed, time) =>{
     return { ...workoutItem};
 };
 
-const get = async () => {
+const get = async ( name, autocomplete ) => {
     const db = await collection();
-    const data = db.find().toArray();
-    return data;
+    if( autocomplete == 1){
+        const data = db.find({name: {$regex: name, $options: 'i'}}).toArray();
+        return data;
+    }
+    else{
+        const data = db.find().toArray();
+        return data;
+    }
 }
 
 
